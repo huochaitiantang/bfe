@@ -17,7 +17,7 @@ int main(int argc,char ** argv){
 	key_num = strlen(key);
 	printf("seed:%d\nkey:%s\n",seed,key);
 	for(i=0;i<256;i++){
-		newseed = rand();
+		newseed = (((((newseed * rand())%RAND_MAX)*seed)%RAND_MAX) + key[rand()%key_num] * key_num )%RAND_MAX;
 		newkey[i] = table[((unsigned char)(newseed+key[newseed%key_num])%(62))];
 	}
 	newkey[256] = '\0';
