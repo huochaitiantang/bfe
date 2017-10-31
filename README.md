@@ -1,4 +1,4 @@
-# bfe
+# BFE
 Binary File Encrypt
 
 #### gen.c generate complicated seed and key by simple seed and key.
