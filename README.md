@@ -1,5 +1,8 @@
 # BFE
 Binary File Encrypt
 
-#### gen.c generate complicated seed and key by simple seed and key.
-#### cvt.c convert binary file to messy file by seed and key.
+# Use
+* compile: `make`
+* encrypt: `crypt id key fin fout 0`
+* decrypt: `crypt id key fout fin 1`
+* note: name of fin must be same
