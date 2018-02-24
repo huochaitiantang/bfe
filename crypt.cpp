@@ -44,8 +44,8 @@ void nk(char* fname, char* key, char nkey[]){
 	return;
 }
 
-void crypt(char* id, char* key, char* fname, char* oname, char* typ){
-	int kn, rc, i, dt;
+void crypt(char* id, char* key, char* fname, char* typ){
+	int kn, rc, i, dt, x;
 	long long cnt = 0;
 	double KB, MB, GB;
 	FILE * fin;
@@ -53,7 +53,19 @@ void crypt(char* id, char* key, char* fname, char* oname, char* typ){
 	char fkey[512];
 	unsigned char x0, x1, x2;
 	unsigned char buff[2048];
+	char oname[2048];
 	time_t start, end;
+        
+        strcpy(oname, fname);
+        x = strlen(fname);	
+	if(atoi(typ) == 0){ oname[x] = 's'; oname[x+1] = '\0';}
+	else if(atoi(typ) == 1){ oname[x - 1] = '\0'; }
+        else return;
+
+	if(strcmp(fname, oname) == 0){
+		printf("ERROR: In and Out Same");
+		return;
+	}
 
 	printf("In : %s\n",fname);
 	printf("Out: %s\n",oname);
@@ -95,7 +107,7 @@ void crypt(char* id, char* key, char* fname, char* oname, char* typ){
 }
 
 int main(int argc, char** argv){
-	if(argc != 6) return 0;
-	crypt(argv[1], argv[2], argv[3], argv[4], argv[5]);	
+	if(argc != 5) return 0;
+	crypt(argv[1], argv[2], argv[3], argv[4]);	
 	return 0;
 }
